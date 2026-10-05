@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BÁO CÁO KINH DOANH TUẦN PHÒNG NCT20 — 28/09/2026 – 02/10/2026</title>
+<meta name="description" content="Báo cáo kinh doanh tuần phòng NCT20 Chi nhánh Nguyễn Công Trứ">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f4f3ef;
+  font-family: "Times New Roman", Times, Georgia, serif;
+  color: #1a1a1a;
+  padding: 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.rpt {
+  max-width: 1160px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #d5d1c8;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.hdr {
+  padding: 26px 32px;
+  border-bottom: 4px solid #0C447C;
+  background: #ffffff;
+}
+.hdr-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.branch-tag {
+  font-size: 13px;
+  color: #0C447C;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+h1 {
+  font-size: 26px;
+  margin: 4px 0 8px;
+  color: #0C447C;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.sub, .right-info {
+  font-size: 14px;
+  color: #4a5568;
+}
+.right-info { text-align: right; }
+.pad { padding: 8px 32px 32px; }
+
+.sec {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0C447C;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid #0C447C;
+  margin: 32px 0 14px;
+  padding-bottom: 6px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.kpi, .mkt {
+  background: #f9f8f5;
+  border: 1px solid #e2ded5;
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: all 0.2s ease;
+}
+.mkt {
+  border-left: 5px solid #0C447C;
+  background: #f7fafc;
+}
+.lbl {
+  font-size: 13px;
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.val {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111;
+  font-family: "Times New Roman", Times, serif;
+}
+.mkt .val { color: #0C447C; }
+.subval {
+  font-size: 13px;
+  margin-top: 6px;
+  color: #666;
+}
+.pos { color: #166534; font-weight: 700; }
+.neg { color: #991b1b; font-weight: 700; }
+
+.warn {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+}
+.warn ul { margin: 6px 0 0 20px; padding: 0; }
+
+.chartbox {
+  height: 320px;
+  position: relative;
+  margin-bottom: 24px;
+  background: #ffffff;
+  padding: 12px;
+  border: 1px solid #e8e5dc;
+  border-radius: 8px;
+}
+
+.tbl-wrap {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+}
+th {
+  background: #ece8df;
+  color: #2d3748;
+  text-align: right;
+  padding: 10px 12px;
+  border-bottom: 2px solid #0C447C;
+  font-weight: 800;
+  white-space: nowrap;
+}
+th.l, td.l { text-align: left; }
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e5e2d8;
+  text-align: right;
+  white-space: nowrap;
+}
+td.font-name { text-align: left; font-weight: 700; }
+tr.total td {
+  font-weight: 800;
+  background: #f2efe7;
+  border-top: 2px solid #0C447C;
+  color: #0C447C;
+}
+tr:hover td { background-color: #fdfbf7; }
+
+.tag-staff {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+.tag-intern {
+  background: #fef3c7;
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.note-card {
+  border: 1px solid #d5d1c8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.note-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f5ef;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: background 0.15s ease;
+}
+.note-h:hover { background: #ede9de; }
+.note-name { font-weight: 800; font-size: 15px; color: #111; }
+.rank {
+  font-size: 12px;
+  background: #e6f0fa;
+  color: #0C447C;
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+.note-body {
+  display: block;
+  border-top: 1px solid #e5e2d8;
+  padding: 16px 20px;
+  background: #ffffff;
+}
+.note-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.note-lbl {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px dashed #d5d1c8;
+}
+.pro { color: #047857; }
+.con { color: #b91c1c; }
+.plan { color: #1d4ed8; }
+ul.bul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.footer {
+  background: #f4f2ec;
+  color: #555;
+  font-size: 13px;
+  padding: 16px 32px;
+  border-top: 1px solid #d5d1c8;
+  text-align: center;
+}
+@media (max-width: 860px) {
+  .grid4, .grid3, .note-cols { grid-template-columns: 1fr; }
+  .hdr-top { flex-direction: column; }
+  .right-info { text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="rpt">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div>
+        <div class="branch-tag">SSI · Chi nhánh Nguyễn Công Trứ · Phòng NCT20</div>
+        <h1>BÁO CÁO KINH DOANH TUẦN PHÒNG NCT20</h1>
+        <div class="sub">Tuần báo cáo: <b>28/09/2026 – 02/10/2026</b> · Chu kỳ doanh số tháng: <b>2026-10 (20/09/2026 → 02/10/2026)</b></div>
+      </div>
+      <div class="right-info">
+        <b>Ngày lập báo cáo:</b> 02/10/2026<br>
+        <b>Quy mô nhân sự:</b> 7 NVMG chính thức · 13 Thực tập sinh
+      </div>
+    </div>
+  </div>
+
+  <div class="pad">
+    
+
+    <!-- 1. KHỐI KPI TỔNG HỢP -->
+    <div class="sec">1. Tổng quan kết quả kinh doanh tuần</div>
+    <div class="grid4">
+      <div class="kpi">
+        <div class="lbl">GTGD tuần này</div>
+        <div class="val">28.73 tỷ</div>
+        <div class="subval pos">▲ 108.2% so với tuần trước</div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">Phí Net tuần này</div>
+        <div class="val">55.40 tr</div>
+        <div class="subval pos">▲ 102.3% so với tuần trước</div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">GTGD lũy kế tháng</div>
+        <div class="val">42.41 tỷ</div>
+        <div class="subval">Phí Net LK: <b>83.35 tr</b></div>
+      </div>
+      <div class="kpi">
+        <div class="lbl">Tài khoản mở mới</div>
+        <div class="val">2 TK</div>
+        <div class="subval">2 NVMG có tài khoản mới</div>
+      </div>
+    </div>
+
+    <!-- KHỐI THỊ PHẦN -->
+    <div class="sec">2. Thị phần phòng NCT20 (Toàn thị trường)</div>
+    <div class="grid3">
+      <div class="mkt">
+        <div class="lbl">Thị phần Tuần</div>
+        <div class="val">0.0166%</div>
+        <div class="subval">GTGD Team: 28.73 tỷ / Sàn: 86.33 nghìn tỷ</div>
+      </div>
+      <div class="mkt">
+        <div class="lbl">Thị phần Tháng</div>
+        <div class="val">0.0123%</div>
+        <div class="subval">GTGD Team LK: 42.41 tỷ / Sàn: 172.41 nghìn tỷ</div>
+      </div>
+      <div class="mkt">
+        <div class="lbl">Thị phần Năm 2026 (YTD)</div>
+        <div class="val">0.0383%</div>
+        <div class="subval">Từ 20/12/2025 · Team: 1,612.03 tỷ / Sàn: 2106.55 nghìn tỷ</div>
+      </div>
+    </div>
+
+    <!-- 2. CÁC BIỂU ĐỒ -->
+    <div class="sec">3. Biểu đồ phân tích kinh doanh</div>
+    
+    <div style="font-weight:700; margin:12px 0 6px; color:#333;">Biểu đồ GTGD theo NVMG (Tuần này vs Tuần trước vs Lũy kế tháng):</div>
+    <div class="chartbox"><canvas id="cGTGD"></canvas></div>
+
+    <div style="font-weight:700; margin:12px 0 6px; color:#333;">Biểu đồ Phí Net lũy kế tháng của các NVMG:</div>
+    <div class="chartbox"><canvas id="cPhiNet"></canvas></div>
+
+    <div style="font-weight:700; margin:12px 0 6px; color:#333;">Biểu đồ Dòng tiền Nộp / Rút ròng trong tuần theo NVMG:</div>
+    <div class="chartbox"><canvas id="cCash"></canvas></div>
+
+    <!-- 3. CÁC BẢNG SỐ LIỆU CHI TIẾT -->
+    <div class="sec">4. Bảng doanh số chi tiết theo NVMG</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="l">Mã AE</th>
+            <th class="l">Họ và tên</th>
+            <th>GTGD tuần này</th>
+            <th>+/– So tuần trước</th>
+            <th>Phí Net tuần</th>
+            <th>GTGD lũy kế tháng</th>
+            <th>Phí Net LK tháng</th>
+            <th>GTGD lũy kế năm (YTD)</th>
+            <th>Phí Net YTD</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-main"></tbody>
+      </table>
+    </div>
+
+    <div class="sec">5. Dòng tiền nộp / rút ròng trong tuần</div>
+    <div class="tbl-wrap">
+      <table style="max-width:760px">
+        <thead>
+          <tr>
+            <th class="l">Mã AE</th>
+            <th class="l">Họ và tên</th>
+            <th>Tổng nộp</th>
+            <th>Tổng rút</th>
+            <th>Net nộp / rút</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-nr"></tbody>
+      </table>
+    </div>
+
+    <div class="sec">6. Tài khoản mở mới theo NVMG</div>
+    <div class="tbl-wrap">
+      <table style="max-width:540px">
+        <thead>
+          <tr>
+            <th class="l">Mã AE</th>
+            <th class="l">Họ và tên</th>
+            <th>Số lượng TK mở mới</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-motk"></tbody>
+      </table>
+    </div>
+
+    <div class="sec">7. Doanh số tháng của Intern (Thực tập sinh)</div>
+    <div class="tbl-wrap">
+      <table style="max-width:760px">
+        <thead>
+          <tr>
+            <th class="l">Tên Intern</th>
+            <th class="l">Mã Intern</th>
+            <th>Số KH đang quản lý</th>
+            <th>Số KH giao dịch</th>
+            <th>Phí Net tháng này</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-intern"></tbody>
+      </table>
+    </div>
+
+    <div class="sec">8. Danh sách nhân sự phòng NCT20</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px">STT</th>
+            <th style="width:140px">Phân loại</th>
+            <th class="l" style="width:90px">Mã định danh</th>
+            <th class="l">Họ và tên</th>
+            <th>Chức danh</th>
+            <th class="l">Email / Ngày kết thúc TT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>1193</b></td><td class='l font-name'>PHẠM THÀNH DANH</td><td>Nhân viên Môi giới</td><td class='l'>danhpt@ssi.com.vn</td></tr><tr><td>2</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>1988</b></td><td class='l font-name'>TRẦN ĐỨC MẠNH</td><td>Nhân viên Môi giới</td><td class='l'>manhtd@ssi.com.vn</td></tr><tr><td>3</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>2342</b></td><td class='l font-name'>TRẦN THỊ TÔ NI</td><td>Nhân viên Môi giới</td><td class='l'>nittt@ssi.com.vn</td></tr><tr><td>4</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>2581</b></td><td class='l font-name'>NGUYỄN LÊ HUỲNH NHƯ</td><td>Nhân viên Môi giới</td><td class='l'>nhunlh@ssi.com.vn</td></tr><tr><td>5</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>3117</b></td><td class='l font-name'>LÊ NAM SƠN</td><td>Nhân viên Môi giới</td><td class='l'>sonln@ssi.com.vn</td></tr><tr><td>6</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>3132</b></td><td class='l font-name'>NGUYỄN THỊ QUỲNH CHÂU</td><td>Nhân viên Môi giới</td><td class='l'>chauntq@ssi.com.vn</td></tr><tr><td>7</td><td><span class='tag-staff'>Nhân viên chính thức</span></td><td class='l'><b>3258</b></td><td class='l font-name'>NGUYỄN THANH VŨ</td><td>Nhân viên Môi giới</td><td class='l'>vunt2@ssi.com.vn</td></tr><tr><td>8</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>QUYNHNTX</b></td><td class='l font-name'>NGUYỄN THỊ XUÂN QUỲNH</td><td>Thực tập sinh / Học việc</td><td class='l'>Ngày kết thúc: 30/09/2026</td></tr><tr><td>9</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>DATTNT</b></td><td class='l font-name'>TRƯƠNG NGÔ TẤN ĐẠT</td><td>Thực tập sinh / Học việc</td><td class='l'>Ngày kết thúc: 28/01/2027</td></tr><tr><td>10</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>TIENHNM</b></td><td class='l font-name'>HỨA NGUYỄN MINH TIẾN</td><td>Thực tập sinh / Học việc</td><td class='l'>Ngày kết thúc: 01/10/2026</td></tr><tr><td>11</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>VANTTK</b></td><td class='l font-name'>TRẦN THỊ KHÁNH VÂN</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>12</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>VANHPT</b></td><td class='l font-name'>HỒ PHÚC TƯỜNG VÂN</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>13</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>NGANPT</b></td><td class='l font-name'>PHẠM THANH NGÂN</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>14</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>NHILDY</b></td><td class='l font-name'>LÊ ĐINH Ý NHI</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>15</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>BAOPK</b></td><td class='l font-name'>PHẠM KHÁNH BẢO</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>16</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>ANTPT</b></td><td class='l font-name'>TRẦN PHAN THIÊN ÂN</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>17</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>MYHK</b></td><td class='l font-name'>HUỲNH KIM MỸ</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>18</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>VYNLP</b></td><td class='l font-name'>NGUYỄN LÊ PHƯƠNG VY</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>19</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>THUYHN</b></td><td class='l font-name'>HỒ NHƯ THỦY</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr><tr><td>20</td><td><span class='tag-intern'>Thực tập sinh</span></td><td class='l'><b>THUYBTN</b></td><td class='l font-name'>BÙI THỊ NGỌC THỦY</td><td>Thực tập sinh / Học việc</td><td class='l'>Đang thực tập</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. QUICKNOTES ACCORDION -->
+    <div class="sec">9. Đánh giá thành viên từ QuickNote (theo FULL NAME)</div>
+    <div class="notes" id="notes"></div>
+
+    
+
+    <!-- 5. METADATA & AUDIT INFO -->
+    <div class="sec">10. Nguồn file dữ liệu & Thông tin Audit</div>
+    <div class="tbl-wrap">
+      <table style="max-width:820px">
+        <thead>
+          <tr>
+            <th class="l">Loại dữ liệu / Nguồn</th>
+            <th class="l">Tên file / Chi tiết nguồn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class='l'><b>Tuần hiện tại (SQL Detail)</b></td><td class='l'>2026.09.28-2026.10.02.xlsx</td></tr><tr><td class='l'><b>Tuần trước (SQL Detail)</b></td><td class='l'>2026.09.21-2026.09.25.xlsx</td></tr><tr><td class='l'><b>Tuần hiện tại (SQL General)</b></td><td class='l'>2026.09.28-2026.10.02.xlsx</td></tr><tr><td class='l'><b>Tháng hiện tại (iBrokerPro)</b></td><td class='l'>2026-10.xlsx</td></tr><tr><td class='l'><b>Tháng hiện tại (SQL General)</b></td><td class='l'>2026-10.xlsx</td></tr><tr><td class='l'><b>Danh sách khách hàng (Master)</b></td><td class='l'>All_Clients_NCT20.xlsx</td></tr><tr><td class='l'><b>Danh sách nhân sự NVMG (Master)</b></td><td class='l'>Broker_List_Nct20.xlsx</td></tr><tr><td class='l'><b>Danh sách thực tập sinh (Master)</b></td><td class='l'>Intern_List.xlsx</td></tr><tr><td class='l'><b>Dữ liệu giá trị giao dịch Thị trường</b></td><td class='l'>Market-Transaction-Value.xlsx</td></tr><tr><td class='l'><b>Dữ liệu dòng tiền (Cash Movement)</b></td><td class='l'>6 file môi giới</td></tr><tr><td class='l'><b>Dữ liệu tài khoản mở mới</b></td><td class='l'>New_Account_Open.xlsx</td></tr><tr><td class='l'><b>Nhận xét thành viên (QuickNote)</b></td><td class='l'>Nct20-Quick-Note.xlsx</td></tr><tr><td class='l'><b>Danh sách khách hàng Intern</b></td><td class='l'>10 file thực tập sinh</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Báo cáo kinh doanh phòng NCT20 · Chi nhánh Nguyễn Công Trứ · Công ty Cổ phần Chứng khoán SSI<br>
+    Hệ thống sinh báo cáo tự động tuân thủ Instruction Contract V5 (SKILL.md) · Lập ngày 02/10/2026
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+
+const DATA = {"nameMap": {"1193": "PHẠM THÀNH DANH", "1988": "TRẦN ĐỨC MẠNH", "2342": "TRẦN THỊ TÔ NI", "2581": "NGUYỄN LÊ HUỲNH NHƯ", "3117": "LÊ NAM SƠN", "3132": "NGUYỄN THỊ QUỲNH CHÂU", "3258": "NGUYỄN THANH VŨ"}, "tuanNay": {"1193": {"gtgd": 12794962106.0, "phi_net": 22712253.0}, "1988": {"gtgd": 1076956000.0, "phi_net": 2293104.0}, "2342": {"gtgd": 4620440600.0, "phi_net": 8223517.0}, "2581": {"gtgd": 7507478000.0, "phi_net": 16718781.0}, "3117": {"gtgd": 877861250.0, "phi_net": 1254819.0}, "3132": {"gtgd": 232619000.0, "phi_net": 518745.0}, "3258": {"gtgd": 1615106800.0, "phi_net": 3682944.0}}, "tuanTruoc": {"1193": {"gtgd": 7426497950.0, "phi_net": 15317850.0}, "1988": {"gtgd": 367877100.0, "phi_net": 761695.0}, "2342": {"gtgd": 2727999000.0, "phi_net": 4953360.0}, "2581": {"gtgd": 1247343250.0, "phi_net": 2781576.0}, "3117": {"gtgd": 1022509970.0, "phi_net": 1338919.0}, "3132": {"gtgd": 296465850.0, "phi_net": 661120.0}, "3258": {"gtgd": 708054450.0, "phi_net": 1578964.0}}, "luyKe": {"1193": {"gtgd": 19920684050.0, "phi_net": 38183597.3065}, "1988": {"gtgd": 1444833100.0, "phi_net": 3054805.063}, "2342": {"gtgd": 7348439600.0, "phi_net": 13176896.308}, "2581": {"gtgd": 8921141250.0, "phi_net": 19871285.8625}, "3117": {"gtgd": 1900371220.0, "phi_net": 2593739.7706}, "3132": {"gtgd": 529084850.0, "phi_net": 1179866.0905}, "3258": {"gtgd": 2345251250.0, "phi_net": 5289091.1625}}, "ytd": {"1193": {"gtgd": 819540474810.0, "phi_net": 975834549.1899999}, "1988": {"gtgd": 154746314800.0, "phi_net": 186860338.79}, "2342": {"gtgd": 319779736450.0, "phi_net": 414010452.84999996}, "2581": {"gtgd": 242995709380.0, "phi_net": 316027793.99}, "3117": {"gtgd": 34128272390.0, "phi_net": 21624822.23}, "3132": {"gtgd": 33319775200.0, "phi_net": 43275480.5}, "3258": {"gtgd": 7524657400.0, "phi_net": 0.0}}, "nopRut": {"1193": {"nop": 2393500000.0, "rut": 705687554.0, "net": 1687812446.0}, "1988": {"nop": 94950000.0, "rut": 267000000.0, "net": -172050000.0}, "2342": {"nop": 749221620.0, "rut": 302615772.0, "net": 446605848.0}, "2581": {"nop": 65070000.0, "rut": 49288842.0, "net": 15781158.0}, "3117": {"nop": 0.0, "rut": 0.0, "net": 0.0}, "3132": {"nop": 0.0, "rut": 0.0, "net": 0.0}, "3258": {"nop": 0.0, "rut": 0.0, "net": 0.0}}, "moTK": {"1193": 1, "1988": 0, "2342": 0, "2581": 0, "3117": 0, "3132": 0, "3258": 1}, "nvList": ["1193", "1988", "2342", "2581", "3117", "3132", "3258"], "byLK": ["1193", "2581", "2342", "3258", "3117", "1988", "3132"], "byPhi": ["1193", "2581", "2342", "3258", "1988", "3117", "3132"], "nrSorted": ["1193", "2342", "2581", "3117", "3132", "3258", "1988"], "notes": [{"ma": "1193", "ae_id_text": "1193", "ten": "Pham Thanh Danh", "full_name": "Pham Thanh Danh", "pro": ["Hướng dẫn 2 bạn mới làm video", "Livestram có tăng mắt xem", "Trading tốt, đúng nhịp thị trường"], "con": ["Chưa có thêm KH tiềm năng", "live chưa đều", "Chưa theo sát 2 bạn mới"], "plan": ["Tìm thêm 2 KHTN", "Đi gặp 1 broker trên thị trường"]}, {"ma": "1988", "ae_id_text": "1988", "ten": "Tran Duc Manh", "full_name": "Tran Duc Manh", "pro": ["Active 2 KH mới chuyển ID"], "con": ["Phí tiếp tục ở vùng rất thấp"], "plan": ["Active lại tất cả KH 2 tháng không giao dịch", "Gia tăng phí net", "Tăng NAV trở lại"]}, {"ma": "2342", "ae_id_text": "2342", "ten": "Tran Thi To Ni", "full_name": "Tran Thi To Ni", "pro": ["Cập nhật thị trường thường xuyên cho KH", "Tương tác với KHTN và KHHH nhiều hơn khi TT chỉnh"], "con": ["NAV thấp", "Chưa livestream lại"], "plan": ["Gia tăng KH vào room", "Tiếp tục livestream đều đặn", "Viết bài và đăng clip tiktok"]}, {"ma": "2581", "ae_id_text": "2581", "ten": "Nguyen Le Huynh Nhu", "full_name": "Nguyen Le Huynh Nhu", "pro": ["Duy trì tư vấn KH", "Khuyến nghị KH giao dịch"], "con": ["GTGD giảm", "KH rút tiền", "Không có NAV mới"], "plan": ["Tiếp tục duy trì active lại KH cũ", "Duy trì nói chuyện với KH trong phiên", "Gặp KH 1-2 buổi trong tuần"]}, {"ma": "", "ae_id_text": "", "ten": "Trương Ngô Tấn Đạt", "full_name": "Trương Ngô Tấn Đạt", "pro": ["Kênh mới đã được 1239 followes", "Room cộng đồng được 146 người", "Có nhiều báo cáo phân tích để thu hút người xem"], "con": ["Kênh đang bị hạn chế đề xuất và bị đình chỉ live 7 ngày", "Còn khá ít so với kỳ vọng", "tuần này không làm được báo cáo"], "plan": ["cố gắng tạo thêm sự tương tác cho người xem trong phiên live", "Phát triển kỹ năng tư vấn để thu hút nhiều KH vào room hơn.", "cố gắng phân tích báo cáo 1 bài/tuần và nâng cao độ sâu của phân tích"]}, {"ma": "3132", "ae_id_text": "3132", "ten": "Nguyen Thi Quynh Chau", "full_name": "Nguyen Thi Quynh Chau", "pro": ["Phát triển khách hàng mới, NDH", "Telesales và chăm sóc KH qua room zalo"], "con": ["Chưa có nhiều KH giao dịch, NAV thấp", "ít KH"], "plan": ["Phát triển KH, tìm kiếm NDH", "Active KH đã mở TK, nạp NAV và giao dịch", "Viết bài MXH và telesales"]}, {"ma": "", "ae_id_text": "", "ten": "Nguyen Thi Xuan Quynh", "full_name": "Nguyen Thi Xuan Quynh", "pro": ["bắt đầu telesale 150 cuộc/ngày", "kết nối được KHTN từ telesale"], "con": ["chưa có thêm KH mới", "chưa chốt sale được KHTN"], "plan": ["Tìm kiếm thêm KH", "Livestream đều đặn", "chốt sale KHTN"]}, {"ma": "3117", "ae_id_text": "3117", "ten": "Le Nam Son", "full_name": "Le Nam Son", "pro": ["Có thêm được kiến thức về PTKT VÀ PTCB", "Đạt 15 khách hàng giao dịch"], "con": ["Cần thêm NAV nhiều hơn", "Kiếm thêm KHTN", "Chưa nắm nhiều về thông tin cơ bản của cp"], "plan": ["Cố gắng tiếp cận nhiều KHTN hơn nữa", "Cải thiện vấn đề chốt KH", "Tập phân tích thêm về thị trường", "Telesale nhiều hơn"]}, {"ma": "", "ae_id_text": "", "ten": "Khuat Thi Thuy Linh", "full_name": "Khuat Thi Thuy Linh", "pro": ["telesale đều hơn"], "con": ["chưa khai thác được nhiều thông tin khách hàng TN qua telesale"], "plan": ["Kết nối 5 khách hàng 1 tuần"]}, {"ma": "", "ae_id_text": "", "ten": "Hua Nguyen Minh Tien", "full_name": "Hua Nguyen Minh Tien", "pro": ["Cập nhật thêm kiến thức về PTKT"], "con": ["Chưa có KHTN mới", "KH không giao dịch, KH không nghe lời tư vấn", "Kênh Tiktok bị cấm Live (25/09)"], "plan": ["Live Tiktok nhiều hơn", "Live nhiều để có lượng KHTN", "Xây kênh"]}, {"ma": "3258", "ae_id_text": "3258", "ten": "Nguyen Thanh Vu", "full_name": "Nguyen Thanh Vu", "pro": ["KH tin tưởng"], "con": ["Chưa chốt được nhiều KH", "Phí giảm mạnh", "Kênh mới chưa có nhiều follow"], "plan": ["Cố gắng khai thác thêm KH", "phát triển thêm mắt xem", "Cố gắng tăng thêm Phí giao dịch", "Phát triển kênh tiktok phụ lên 1000 Follow trong tháng 6"]}, {"ma": "", "ae_id_text": "", "ten": "Bui Thi Ngoc Thuy", "full_name": "Bui Thi Ngoc Thuy", "pro": ["Trading tốt, tự học tốt, có kế hoạch bài bản", "Luôn giữ được tinh thần vui vẻ mặc dù thị trường quá nhiều biến động"], "con": ["Làm việc lan man"], "plan": ["Trong 1 -2 tháng master phân tích kĩ thuật, sau đó hướng đến đọc phân tích cơ bản - vĩ mô ngành, mỗi tuần 1 ngành, làm tư liệu nói trên live", "Tìm kiếm 2 khách hàng tiềm năng, kéo ID của khách về. Tiếp cận qua các kênh Online (Livestream Tiktok, facebook), Truyền thống (zalo, telesale, tương lai có thể thử lại email marketing)"]}, {"ma": "", "ae_id_text": "", "ten": "TRƯƠNG HOÀNG LONG", "full_name": "TRƯƠNG HOÀNG LONG", "pro": ["Mới tham gia"], "con": [], "plan": []}, {"ma": "", "ae_id_text": "", "ten": "PHẠM THANH NGÂN", "full_name": "PHẠM THANH NGÂN", "pro": ["Mới tham gia"], "con": [], "plan": []}, {"ma": "", "ae_id_text": "", "ten": "HỒ PHÚC TƯỜNG VÂN", "full_name": "HỒ PHÚC TƯỜNG VÂN", "pro": ["Mới tham gia"], "con": [], "plan": []}, {"ma": "", "ae_id_text": "", "ten": "TRẦN THỊ KHÁNH VÂN", "full_name": "TRẦN THỊ KHÁNH VÂN", "pro": ["Mới tham gia"], "con": [], "plan": []}], "intern": [{"name": "TRƯƠNG NGÔ TẤN ĐẠT", "code": "DATTNT", "so_kh_ql": 102, "so_kh_gd": 12, "phi_net_lk": 1016166.3805}, {"name": "NGUYỄN THỊ XUÂN QUỲNH", "code": "QUYNHNTX", "so_kh_ql": 202, "so_kh_gd": 4, "phi_net_lk": 790220.6775}, {"name": "BÙI THỊ NGỌC THỦY", "code": "THUYBTN", "so_kh_ql": 3, "so_kh_gd": 1, "phi_net_lk": 507681.8}, {"name": "HỨA NGUYỄN MINH TIẾN", "code": "TIENHNM", "so_kh_ql": 36, "so_kh_gd": 2, "phi_net_lk": 122684.8}, {"name": "LINHKTT", "code": "LINHKTT", "so_kh_ql": 71, "so_kh_gd": 0, "phi_net_lk": 0.0}]};
+const nameMap = DATA.nameMap;
+const tuanNay = DATA.tuanNay;
+const tuanTruoc = DATA.tuanTruoc;
+const luyKe = DATA.luyKe;
+const ytd = DATA.ytd;
+const nopRut = DATA.nopRut;
+const moTK = DATA.moTK;
+const nvList = DATA.nvList;
+const byLK = DATA.byLK;
+const byPhi = DATA.byPhi;
+const nrSorted = DATA.nrSorted;
+
+const fty = v => (Number(v || 0) / 1e9).toFixed(2);
+const ftr = v => (Number(v || 0) / 1e6).toFixed(2);
+const pct = (a, b) => b ? ((a - b) / b * 100) : 0;
+
+// 1. Chart GTGD
+new Chart(document.getElementById('cGTGD'), {
+  type: 'bar',
+  data: {
+    labels: byLK.map(m => nameMap[m] || m),
+    datasets: [
+      { label: 'Tuần này', data: byLK.map(m => (tuanNay[m]?.gtgd || 0) / 1e9), backgroundColor: '#0C447C' },
+      { label: 'Tuần trước', data: byLK.map(m => (tuanTruoc[m]?.gtgd || 0) / 1e9), backgroundColor: '#cbd5e1' },
+      { label: 'Lũy kế tháng', data: byLK.map(m => (luyKe[m]?.gtgd || 0) / 1e9), backgroundColor: '#38bdf8' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { ticks: { callback: v => v + ' tỷ' } } }
+  }
+});
+
+// 2. Chart Phí Net Lũy Kế
+new Chart(document.getElementById('cPhiNet'), {
+  type: 'bar',
+  data: {
+    labels: byPhi.map(m => nameMap[m] || m),
+    datasets: [
+      { label: 'Phí net tuần này', data: byPhi.map(m => (tuanNay[m]?.phi_net || 0) / 1e6), backgroundColor: '#059669' },
+      { label: 'Phí net lũy kế tháng', data: byPhi.map(m => (luyKe[m]?.phi_net || 0) / 1e6), backgroundColor: '#10b981' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { ticks: { callback: v => v + ' tr' } } }
+  }
+});
+
+// 3. Chart Dòng Tiền Nộp/Rút Ròng
+new Chart(document.getElementById('cCash'), {
+  type: 'bar',
+  data: {
+    labels: nrSorted.map(m => nameMap[m] || m),
+    datasets: [
+      { label: 'Tổng nộp', data: nrSorted.map(m => (nopRut[m]?.nop || 0) / 1e9), backgroundColor: '#0284c7' },
+      { label: 'Tổng rút', data: nrSorted.map(m => (nopRut[m]?.rut || 0) / 1e9), backgroundColor: '#ef4444' },
+      { label: 'Net nộp/rút', data: nrSorted.map(m => (nopRut[m]?.net || 0) / 1e9), backgroundColor: '#16a34a' }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { ticks: { callback: v => v + ' tỷ' } } }
+  }
+});
+
+// Bảng chi tiết NVMG
+const tbodyMain = document.getElementById('tbody-main');
+let sTN = 0, sTT = 0, sPN = 0, sLK = 0, sPLK = 0, sYTD = 0, sPYTD = 0;
+byLK.forEach(m => {
+  const tn = tuanNay[m]?.gtgd || 0;
+  const tt = tuanTruoc[m]?.gtgd || 0;
+  const pn = tuanNay[m]?.phi_net || 0;
+  const lk = luyKe[m]?.gtgd || 0;
+  const plk = luyKe[m]?.phi_net || 0;
+  const y = ytd[m]?.gtgd || 0;
+  const py = ytd[m]?.phi_net || 0;
+
+  sTN += tn; sTT += tt; sPN += pn; sLK += lk; sPLK += plk; sYTD += y; sPYTD += py;
+  const ch = pct(tn, tt);
+  const cls = ch >= 0 ? 'pos' : 'neg';
+  const ar = ch >= 0 ? '▲' : '▼';
+
+  tbodyMain.innerHTML += `<tr>
+    <td class='l'>${m}</td>
+    <td class='font-name'>${nameMap[m] || m}</td>
+    <td>${fty(tn)} tỷ</td>
+    <td class='${cls}'>${ar} ${Math.abs(ch).toFixed(1)}%</td>
+    <td>${ftr(pn)} tr</td>
+    <td>${fty(lk)} tỷ</td>
+    <td>${ftr(plk)} tr</td>
+    <td>${fty(y)} tỷ</td>
+    <td>${ftr(py)} tr</td>
+  </tr>`;
+});
+
+const chTeam = pct(sTN, sTT);
+tbodyMain.innerHTML += `<tr class='total'>
+  <td class='l' colspan='2'>TỔNG CỘNG TEAM</td>
+  <td>${fty(sTN)} tỷ</td>
+  <td class='${chTeam >= 0 ? "pos" : "neg"}'>${chTeam >= 0 ? '▲' : '▼'} ${Math.abs(chTeam).toFixed(1)}%</td>
+  <td>${ftr(sPN)} tr</td>
+  <td>${fty(sLK)} tỷ</td>
+  <td>${ftr(sPLK)} tr</td>
+  <td>${fty(sYTD)} tỷ</td>
+  <td>${ftr(sPYTD)} tr</td>
+</tr>`;
+
+// Bảng Nộp/rút
+const tbNR = document.getElementById('tbody-nr');
+let sNop = 0, sRut = 0, sNet = 0;
+nrSorted.forEach(m => {
+  const d = nopRut[m] || { nop: 0, rut: 0, net: 0 };
+  sNop += d.nop || 0; sRut += d.rut || 0; sNet += d.net || 0;
+  const cls = (d.net || 0) >= 0 ? 'pos' : 'neg';
+  tbNR.innerHTML += `<tr>
+    <td class='l'>${m}</td>
+    <td class='font-name'>${nameMap[m] || m}</td>
+    <td>${fty(d.nop)} tỷ</td>
+    <td>${fty(d.rut)} tỷ</td>
+    <td class='${cls}'>${fty(d.net)} tỷ</td>
+  </tr>`;
+});
+tbNR.innerHTML += `<tr class='total'>
+  <td class='l' colspan='2'>TỔNG CỘNG</td>
+  <td>${fty(sNop)} tỷ</td>
+  <td>${fty(sRut)} tỷ</td>
+  <td class='${sNet >= 0 ? "pos" : "neg"}'>${fty(sNet)} tỷ</td>
+</tr>`;
+
+// Bảng Mở TK
+const tbMT = document.getElementById('tbody-motk');
+let totalTK = 0;
+nvList.map(m => [m, moTK[m] || 0]).sort((a, b) => b[1] - a[1]).forEach(([m, c]) => {
+  totalTK += Number(c || 0);
+  tbMT.innerHTML += `<tr>
+    <td class='l'>${m}</td>
+    <td class='font-name'>${nameMap[m] || m}</td>
+    <td>${c > 0 ? c + ' TK' : '—'}</td>
+  </tr>`;
+});
+tbMT.innerHTML += `<tr class='total'>
+  <td class='l' colspan='2'>TỔNG CỘNG</td>
+  <td>${totalTK} TK</td>
+</tr>`;
+
+// Bảng Doanh số Intern
+const tbIntern = document.getElementById('tbody-intern');
+if (tbIntern && DATA.intern && DATA.intern.length) {
+  let totalPhi = 0, totalQL = 0, totalGD = 0;
+  DATA.intern.forEach(p => {
+    totalPhi += p.phi_net_lk || 0;
+    totalQL  += p.so_kh_ql || 0;
+    totalGD  += p.so_kh_gd || 0;
+    tbIntern.innerHTML += `<tr>
+      <td class='font-name'>${p.name}</td>
+      <td class='l'>${p.code}</td>
+      <td>${p.so_kh_ql || 0}</td>
+      <td>${p.so_kh_gd || 0}</td>
+      <td>${ftr(p.phi_net_lk)} tr</td>
+    </tr>`;
+  });
+  tbIntern.innerHTML += `<tr class='total'>
+    <td class='l' colspan='2'>TỔNG CỘNG</td>
+    <td>${totalQL}</td>
+    <td>${totalGD}</td>
+    <td>${ftr(totalPhi)} tr</td>
+  </tr>`;
+} else if (tbIntern) {
+  tbIntern.innerHTML = "<tr><td colspan='5' style='text-align:center;color:#64748b'>Chưa có dữ liệu giao dịch Intern trong tháng</td></tr>";
+}
+
+// Accordion QuickNotes theo FULL NAME
+const rank = {};
+byLK.forEach((m, i) => rank[m] = i + 1);
+const notesEl = document.getElementById('notes');
+if (notesEl && DATA.notes && DATA.notes.length) {
+  DATA.notes.forEach((p, idx) => {
+    const card = document.createElement('div');
+    card.className = 'note-card';
+    const pro  = (p.pro || []).map(x => `<li>${x}</li>`).join('') || '<li>—</li>';
+    const con  = (p.con || []).map(x => `<li>${x}</li>`).join('') || '<li>—</li>';
+    const plan = (p.plan || []).map(x => `<li>${x}</li>`).join('') || '<li>—</li>';
+    const name = p.full_name || p.ten || p.ma || ('Thành viên ' + (idx + 1));
+    const tag  = p.ma ? (rank[p.ma] ? `AE ${p.ma} · #${rank[p.ma]} lũy kế` : `AE ${p.ma}`) : 'Thực tập sinh / Chưa có AE ID';
+    const r    = `<span class='rank'>${tag}</span>`;
+
+    card.innerHTML = `<div class='note-h' onclick="const b=this.nextElementSibling;b.style.display=b.style.display==='none'?'block':'none'">`
+      + `<div class='note-name'>${name} ${r}</div><div>▼</div></div>`
+      + `<div class='note-body'><div class='note-cols'>`
+      + `<div><div class='note-lbl pro'>Ưu điểm</div><ul class='bul'>${pro}</ul></div>`
+      + `<div><div class='note-lbl con'>Nhược điểm</div><ul class='bul'>${con}</ul></div>`
+      + `<div><div class='note-lbl plan'>Mục tiêu / Hành động</div><ul class='bul'>${plan}</ul></div>`
+      + `</div></div>`;
+    notesEl.appendChild(card);
+  });
+}
+
+</script>
+</body>
+</html>
